@@ -1,0 +1,51 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String nombre, identificacion, tipoHabitacion, registro;
+        int edad, numeroHabitaciones;
+        double tarifa, total;
+        System.out.print("Ingrese el nombre del usuario: ");
+        nombre = sc.nextLine();
+        System.out.print("Ingrese el numero de identificacion: ");
+        identificacion = sc.nextLine();
+        System.out.print("Ingrese la edad: ");
+        edad = sc.nextInt();
+        sc.nextLine();
+        if (edad >= 18) {
+            System.out.print("Ingrese el tipo de habitacion (sencilla, doble o suite): ");
+            tipoHabitacion = sc.nextLine().toLowerCase();
+            System.out.print("Ingrese el numero de habitaciones: ");
+            numeroHabitaciones = sc.nextInt();
+            if (tipoHabitacion.equals("sencilla")) {
+                tarifa = 40;
+            } else if (tipoHabitacion.equals("doble")) {
+                tarifa = 60;
+            } else if (tipoHabitacion.equals("suite")) {
+                tarifa = 80;
+            } else {
+                System.out.println("Tipo de habitacion no valido.");
+                sc.close();
+                return;
+            }
+            if (tipoHabitacion.equals("suite") && numeroHabitaciones > 2) {
+                System.out.println("Solo hay 2 suites disponibles.");
+                sc.close();
+                return;
+            }
+            registro = identificacion.substring(identificacion.length() - 4);
+            total = tarifa * numeroHabitaciones;
+            System.out.println("\n--- DATOS DEL USUARIO ---");
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Identificacion: " + identificacion);
+            System.out.println("Numero de registro: " + registro);
+            System.out.println("Edad: " + edad);
+            System.out.println("Tipo de habitacion: " + tipoHabitacion);
+            System.out.println("Numero de habitaciones: " + numeroHabitaciones);
+            System.out.println("Valor total a pagar: $" + total);
+        } else {
+            System.out.println("El usuario es menor de edad. No puede registrarse.");
+        }
+        sc.close();
+    }
+}
